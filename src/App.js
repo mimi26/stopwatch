@@ -3,16 +3,35 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      display: 0
+    }
+    this.handleStop = this.handleStop.bind(this);
+  }
+
+  componentDidMount() {
+      this.stopWatch()
+  }
+
+  stopWatch() {
+  this.startWatch = setInterval(() => {
+    this.setState(prevState => ({ display: prevState.display + 1 }));
+  }, 10);
+  }
+
+  handleStop() {
+    console.log('clicked')
+    clearInterval(this.startWatch);
+  }
+  
   render() {
+    const { display } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div onClick={this.handleStop}>
+      {display}
+        
       </div>
     );
   }
