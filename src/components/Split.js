@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Split extends Component {
     render() {
-        const { time } = this.props;
+        const { time, handleSplitClick } = this.props;
         return (
-            <div>
+            <div onClick={() => handleSplitClick(time)}>
                 {time}
             </div>
         );
